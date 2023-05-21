@@ -7,6 +7,8 @@ import { ChatComponent } from './chat/chat.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BotSmallComponent } from './bot-small/bot-small.component';
 import { BotBigComponent } from './bot-big/bot-big.component';
+import { StoreModule } from '@ngrx/store';
+import { objectReducer } from './state/state.reducer';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { BotBigComponent } from './bot-big/bot-big.component';
     BotBigComponent,
   ],
   imports: [
+    StoreModule.forRoot({ objects: objectReducer}),
     BrowserModule,
     AppRoutingModule
   ],
