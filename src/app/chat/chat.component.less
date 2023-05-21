@@ -2,5 +2,27 @@
 
 :host {
   flex: 1;
-  background-color: @background-primary;
+  display: flex;
+}
+
+.main {
+  flex: 1;
+}
+
+.top {
+  display: flex;
+  gap: @padding-md;
+  padding: @padding-sm;
+  align-items: center;
+  border-bottom: solid @text-secondary 1px;
+}
+
+.top > .image {
+  width: 65px;
+  height: 65px;
+  border-radius: @padding-sm;
+}
+
+.top > h2 {
+  .text-lg();
 }

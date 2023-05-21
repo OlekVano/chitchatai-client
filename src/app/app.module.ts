@@ -5,14 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { BotLinkComponent } from './bot-link/bot-link.component';
+import { BotSmallComponent } from './bot-small/bot-small.component';
+import { BotBigComponent } from './bot-big/bot-big.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     NavigationComponent,
-    BotLinkComponent,
+    BotSmallComponent,
+    BotBigComponent,
   ],
   imports: [
     BrowserModule,
