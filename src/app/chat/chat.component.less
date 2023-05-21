@@ -47,9 +47,16 @@
   border-radius: @padding-xl;
   outline: none;
   border: solid 1.5px @text-secondary;
+  .text-sm();
+}
+
+.image-wrapper {
+  cursor: pointer;
 }
 
 .image-wrapper > img {
   width: 30px;
   height: 30px;
+  pointer-events: none;
+  user-select: none;
 }
