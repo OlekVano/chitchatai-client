@@ -1,0 +1,33 @@
+@import '/src/consts.less';
+
+:host {
+  width: 300px;
+  background-color: @background-secondary;
+}
+
+.wrapper {
+  padding: @padding-md;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: @padding-xl;
+}
+
+.number-bots {
+  padding: @padding-xs @padding-md;
+  background-color: @color-primary;
+  border-radius: @padding-md;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: @padding-sm;
+}
+
+h1 {
+  .text-xl();
+}
