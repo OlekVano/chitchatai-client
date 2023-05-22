@@ -1,4 +1,10 @@
+interface Message {
+  author: 'bot' | 'user',
+  content: string
+}
+
 export interface StateModel {
-  id: string;
   name: string;
+  description: string,
+  messages: Message[]
 }
