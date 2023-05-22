@@ -4,6 +4,7 @@ interface Message {
 }
 
 export interface StateModel {
+  img?: string,
   name: string;
   description: string,
   messages: Message[]
