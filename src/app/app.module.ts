@@ -8,7 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { BotSmallComponent } from './bot-small/bot-small.component';
 import { BotBigComponent } from './bot-big/bot-big.component';
 import { StoreModule } from '@ngrx/store';
-import { objectReducer } from './state/state.reducer';
+import { botsReducer } from './bots.reducer';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { objectReducer } from './state/state.reducer';
     BotBigComponent,
   ],
   imports: [
-    StoreModule.forRoot({ objects: objectReducer}),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({bots: botsReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

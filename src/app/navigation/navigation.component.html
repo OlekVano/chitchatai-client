@@ -4,9 +4,6 @@
     <p class="number-bots">4</p>
   </div>
   <div class="links">
-    <app-bot-small></app-bot-small>
-    <app-bot-small></app-bot-small>
-    <app-bot-small></app-bot-small>
-    <app-bot-small></app-bot-small>
+    <app-bot-small *ngFor="let bot of bots$ | async" [bot]="bot"></app-bot-small>
   </div>
 </div>
