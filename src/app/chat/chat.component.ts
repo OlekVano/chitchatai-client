@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Bot } from '../state/bots.model';
 
 @Component({
   selector: 'app-chat',
@@ -6,5 +10,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat.component.less']
 })
 export class ChatComponent {
+  bots$: Observable<Bot[]>;
+  currBot?: Bot;
 
+  constructor (private route: ActivatedRoute, private store: Store<{bots: Bot[]}>, private cdr: ChangeDetectorRef) {
+    this.bots$ = store.select(state => state.bots);
+  }
+
+  ngOnInit() {
+    this.route.url.subscribe((segments) => {
+      const url = segments.map(segment => segment.path).join('/');
+      this.bots$.subscribe((bots: Bot[]) => {
+        this.currBot = bots.find(bot => bot.name.toLowerCase() === url);
+      });
+      this.cdr.detectChanges();
+    })
+  }
 }

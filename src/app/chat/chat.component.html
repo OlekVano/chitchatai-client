@@ -1,9 +1,8 @@
 <div class="main">
   <div class="top">
-    <app-bot-small></app-bot-small>
+    <app-bot-small *ngIf="currBot" [bot]="currBot"></app-bot-small>
   </div>
   <div class="messages">
-
   </div>
   <div class="input-container">
     <input type="text" placeholder="Type message..." />
