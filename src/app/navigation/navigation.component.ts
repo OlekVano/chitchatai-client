@@ -1,8 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Bot } from '../state/bots.model';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
@@ -10,19 +6,4 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./navigation.component.less'],
 })
 export class NavigationComponent {
-  bots$: Observable<Bot[]>;
-  selectedBot: string = '';
-
-  constructor(private store: Store<{bots: Bot[]}>, private router: Router, private cdr: ChangeDetectorRef) {
-    this.bots$ = store.select(state => state.bots);
-  }
-
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.selectedBot = event.url.substring(1);
-        this.cdr.detectChanges();
-      }
-    })
-  }
 }

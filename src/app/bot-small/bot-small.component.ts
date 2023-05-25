@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener, Input } from '@angular/core';
-import { Bot } from '../state/bots.model';
 import { Router } from '@angular/router';
+import { Bot } from 'src/types';
 
 @Component({
   selector: 'app-bot-small',
