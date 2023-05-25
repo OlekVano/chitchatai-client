@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Bot } from '../state/bots.model';
@@ -13,7 +13,7 @@ export class ChatComponent {
   bots$: Observable<Bot[]>;
   currBot?: Bot;
 
-  constructor (private route: ActivatedRoute, private store: Store<{bots: Bot[]}>, private cdr: ChangeDetectorRef) {
+  constructor (private route: ActivatedRoute, private router: Router, private store: Store<{bots: Bot[]}>, private cdr: ChangeDetectorRef) {
     this.bots$ = store.select(state => state.bots);
   }
 
@@ -22,6 +22,8 @@ export class ChatComponent {
       const url = segments.map(segment => segment.path).join('/');
       this.bots$.subscribe((bots: Bot[]) => {
         this.currBot = bots.find(bot => bot.name.toLowerCase() === url);
+        if (this.currBot) return;
+        this.router.navigate(['sarah']);
       });
       this.cdr.detectChanges();
     })
