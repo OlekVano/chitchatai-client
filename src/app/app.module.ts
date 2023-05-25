@@ -8,7 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { BotSmallComponent } from './bot-small/bot-small.component';
 import { BotBigComponent } from './bot-big/bot-big.component';
 import { StoreModule } from '@ngrx/store';
-import { botsReducer } from './bots.reducer';
+import { botsReducer } from './state/bots.reducer';
 
 @NgModule({
   declarations: [
