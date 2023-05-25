@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Bot } from '../bots.model';
+import { Component, HostBinding, HostListener, Input } from '@angular/core';
+import { Bot } from '../state/bots.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bot-small',
@@ -8,4 +9,17 @@ import { Bot } from '../bots.model';
 })
 export class BotSmallComponent {
   @Input() bot!: Bot;
+  @Input() selected!: boolean;
+
+  constructor(private router: Router) {}
+
+  @HostBinding('class.selected')
+  get hostClass(): boolean {
+    return this.selected
+  }
+
+  @HostListener('click')
+  onClick() {
+    this.router.navigate([`${this.bot.name.toLowerCase()}`]);
+  }
 }

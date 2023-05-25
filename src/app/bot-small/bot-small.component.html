@@ -1,5 +1,5 @@
 <img [src]="bot.avatar" class="image" />
 <div class="container">
   <h2>{{ bot.name }}</h2>
-  <p *ngIf="bot.messages.length !== 0">{{ bot.messages[bot.messages.length].content }}</p>
+  <p>{{ bot.messages.length === 0 ? bot.status : bot.messages[bot.messages.length - 1].content }}</p>
 </div>
