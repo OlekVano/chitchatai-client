@@ -14,9 +14,10 @@
 .top {
   display: flex;
   gap: @padding-md;
-  padding: @padding-sm;
+  padding: 0 @padding-md;
   align-items: center;
-  border-bottom: solid @text-secondary 1px;
+  border-bottom: solid @border-color-primary 2px;
+  height: 70px;
 }
 
 .top > .image {
@@ -46,7 +47,7 @@
   padding: @padding-sm;
   border-radius: @padding-xl;
   outline: none;
-  border: solid 1.5px @text-secondary;
+  border: solid 1.5px @border-color-primary;
   .text-sm();
 }
 
