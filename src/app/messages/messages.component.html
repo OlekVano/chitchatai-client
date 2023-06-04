@@ -1,1 +1,1 @@
-<app-message *ngFor="let message of bot.messages" [text]="message.content" [right]="message.author === 'user'" [avatar]="message.author === 'user' ? '/assets/images/hacker.png' : bot.avatar"></app-message>
+<app-message *ngFor="let message of bot.messages" [text]="message.content" [right]="!message.bot" [avatar]="message.bot ? bot.avatar : '/assets/images/hacker.png'"></app-message>

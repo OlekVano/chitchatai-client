@@ -7,6 +7,6 @@ export interface Bot {
 }
 
 export interface Message {
-  author: string,
+  bot: boolean,
   content: string
 }

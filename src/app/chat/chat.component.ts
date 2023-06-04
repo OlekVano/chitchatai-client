@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, OnChanges } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Bot, Message } from '../state/bots.model';
@@ -13,10 +14,11 @@ import { addMessage } from '../state/bots.actions';
 })
 export class ChatComponent implements OnInit {
   bots$: Observable<Bot[]>;
+  bots: Bot[] = [];
   currBot?: Bot;
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
 
-  constructor (private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private cdr: ChangeDetectorRef) {
+  constructor (private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private cdr: ChangeDetectorRef, private http: HttpClient) {
     this.bots$ = store.select(state => state.bots);
   }
 
@@ -26,11 +28,11 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
     const userMessage: Message = {
-      author: 'user',
+      bot: false,
       content: this.messageInput.nativeElement.value
     };
 
-    this.store.dispatch(addMessage({message: userMessage, botName: this.currBot!.name}))
+    this.store.dispatch(addMessage({message: userMessage, botIndex: this.bots.indexOf(this.currBot!)}))
 
     this.messageInput.nativeElement.value = '';
   }
@@ -45,10 +47,30 @@ export class ChatComponent implements OnInit {
 
   handleBotsChanges(url: string) {
     this.bots$.subscribe((bots: Bot[]) => {
-      console.log('Bots changed');
+      this.bots = bots;
+      this.saveToLocal(bots);
       this.currBot = bots.find(bot => bot.name.toLowerCase() === url);
-      if (this.currBot) return;
-      this.router.navigate(['sarah']);
+      if (!this.currBot) this.router.navigate(['sarah']);
+      else if (
+        this.currBot.messages.length > 0 && 
+        !this.currBot.messages[this.currBot.messages.length - 1].bot
+      ) {
+        this.getBotAnswer(bots, bots.indexOf(this.currBot));
+      }
     });
+  }
+
+  getBotAnswer(bots: Bot[], botIndex: number) {
+    // const url = 'https://chitchat-ai.herokuapp.com';
+    const url = 'http://localhost:3001';
+    this.http.post<any>(url, {identity: bots[botIndex].description, messages: bots[botIndex].messages.slice(-5)}).subscribe(
+      (response: Message) => {
+        this.store.dispatch(addMessage({ message: response, botIndex: botIndex }));
+      }
+    );
+  }
+
+  saveToLocal(bots: Bot[]) {
+    localStorage.setItem('bots', JSON.stringify(bots));
   }
 }

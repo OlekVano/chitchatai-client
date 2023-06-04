@@ -4,10 +4,8 @@ import { Bot, Message } from './bots.model';
 
 export const initialState = getState();
 
-function appendMessage(state: Bot[], { message, botName }: { message: Message, botName: string}) {
+function appendMessage(state: Bot[], { message, botIndex}: { message: Message, botIndex: number}) {
   let newState = [...state];
-  const botIndex = state.findIndex(b => b.name === botName)!;
-  if (botIndex === -1) return state;
   newState[botIndex] = {
     ...newState[botIndex],
     messages: [...newState[botIndex].messages, message]
@@ -22,7 +20,7 @@ export const botsReducer = createReducer(
 );
 
 function getState(): Bot[] {
-  const savedState = localStorage.getItem('state');
+  const savedState = localStorage.getItem('bots');
   if (savedState) {
     return JSON.parse(savedState);
   }

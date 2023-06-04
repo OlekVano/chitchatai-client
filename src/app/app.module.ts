@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
@@ -25,7 +25,8 @@ import { MessageComponent } from './message/message.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({bots: botsReducer})
+    StoreModule.forRoot({bots: botsReducer}),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
