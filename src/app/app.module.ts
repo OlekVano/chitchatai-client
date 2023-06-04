@@ -9,6 +9,8 @@ import { BotSmallComponent } from './bot-small/bot-small.component';
 import { BotBigComponent } from './bot-big/bot-big.component';
 import { StoreModule } from '@ngrx/store';
 import { botsReducer } from './state/bots.reducer';
+import { MessagesComponent } from './messages/messages.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { botsReducer } from './state/bots.reducer';
     NavigationComponent,
     BotSmallComponent,
     BotBigComponent,
+    MessagesComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,8 +32,6 @@ export class ChatComponent implements OnInit {
 
     this.store.dispatch(addMessage({message: userMessage, botName: this.currBot!.name}))
 
-
-
     this.messageInput.nativeElement.value = '';
   }
 
