@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Bot } from '../state/bots.model';
 import { NavigationEnd, Router } from '@angular/router';
+import { AppState } from '../state/state.model';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,7 @@ export class NavigationComponent {
   bots$: Observable<Bot[]>;
   selectedBot: string = '';
 
-  constructor(private store: Store<{bots: Bot[]}>, private router: Router, private cdr: ChangeDetectorRef) {
+  constructor(private store: Store<AppState>, private router: Router, private cdr: ChangeDetectorRef) {
     this.bots$ = store.select(state => state.bots);
   }
 

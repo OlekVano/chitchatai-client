@@ -6,7 +6,7 @@ export interface Bot {
   messages: Message[]
 }
 
-interface Message {
+export interface Message {
   author: string,
   content: string
 }

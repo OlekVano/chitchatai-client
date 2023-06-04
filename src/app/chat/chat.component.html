@@ -5,8 +5,8 @@
   <div class="messages">
   </div>
   <div class="input-container">
-    <input type="text" placeholder="Type message..." />
-    <div class="image-wrapper">
+    <input type="text" placeholder="Type message..." #messageInput />
+    <div class="image-wrapper" (click)="sendMessage()" >
       <img src="/assets/images/paper.png" />
     </div>
   </div>

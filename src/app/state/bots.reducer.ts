@@ -1,12 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
-import { append, remove } from './bots.actions';
-import { Bot } from './bots.model';
+import { addMessage, remove } from './bots.actions';
+import { Bot, Message } from './bots.model';
 
 export const initialState = getState();
 
+function appendMessage(state: Bot[], { message, botName }: { message: Message, botName: string}) {
+  let newState = [...state];
+  const botIndex = state.findIndex(b => b.name === botName)!;
+  if (botIndex === -1) return state;
+  newState[botIndex] = {
+    ...newState[botIndex],
+    messages: [...newState[botIndex].messages, message]
+  };
+  return newState
+}
+
 export const botsReducer = createReducer(
   initialState,
-  on(append, (state) => state),
+  on(addMessage, appendMessage),
   on(remove, (state) => state),
 );
 
