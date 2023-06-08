@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Bot } from '../state/bots.model';
 
 @Component({
   selector: 'app-bot-big',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./bot-big.component.less']
 })
 export class BotBigComponent {
-
+  @Input() bot!: Bot;
 }

@@ -1,0 +1,26 @@
+@import '/src/consts.less';
+
+:host {
+  display: flex;
+  align-items: center;
+  padding: @padding-sm;
+  gap: @padding-md;
+}
+
+:host.right {
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background-color: gray;
+  border-radius: @padding-xs;
+}
+
+.text {
+  background-color: @color-primary;
+  padding: @padding-sm;
+  border-radius: @padding-xs;
+}
