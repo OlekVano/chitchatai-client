@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   bots$: Observable<Bot[]>;
   bots: Bot[] = [];
   currBot?: Bot;
+  waiting: boolean = false;
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
 
   constructor (private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private cdr: ChangeDetectorRef, private http: HttpClient) {
@@ -56,6 +57,10 @@ export class ChatComponent implements OnInit {
         !this.currBot.messages[this.currBot.messages.length - 1].bot
       ) {
         this.getBotAnswer(bots, bots.indexOf(this.currBot));
+        this.waiting = true;
+      }
+      else {
+        this.waiting = false;
       }
     });
   }

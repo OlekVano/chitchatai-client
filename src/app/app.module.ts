@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { botsReducer } from './state/bots.reducer';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageComponent } from './message/message.component';
+import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MessageComponent } from './message/message.component';
     BotBigComponent,
     MessagesComponent,
     MessageComponent,
+    LoadingDotsComponent,
   ],
   imports: [
     BrowserModule,
