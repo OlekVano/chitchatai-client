@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnInit, Renderer2 } from '@angular/core';
 import { Bot } from '../state/bots.model';
 
 @Component({
@@ -6,6 +6,18 @@ import { Bot } from '../state/bots.model';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.less']
 })
-export class MessagesComponent {
+export class MessagesComponent implements AfterViewChecked {
   @Input() bot!: Bot;
+
+  private hasScrolled = false;
+
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef
+  ) {}
+
+  ngAfterViewChecked() {
+    const element = this.elementRef.nativeElement;
+    this.renderer.setProperty(element, 'scrollTop', element.scrollHeight);
+  }
 }
