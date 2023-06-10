@@ -27,10 +27,16 @@ export class ChatComponent implements OnInit {
     this.handleUrlChanges();
   }
 
+  handleEnterKey() {
+    this.sendMessage();
+  }
+
   sendMessage() {
+    if (this.messageInput.nativeElement.value.length === 0) return;
+
     const userMessage: Message = {
       bot: false,
-      content: this.messageInput.nativeElement.value
+      content: this.messageInput.nativeElement.value.trim()
     };
 
     this.store.dispatch(addMessage({message: userMessage, botIndex: this.bots.indexOf(this.currBot!)}))
