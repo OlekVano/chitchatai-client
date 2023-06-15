@@ -24,10 +24,10 @@ export class NavigationComponent {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const urlSegments = this.router.url.split('/');
-        this.selectedBot = urlSegments[urlSegments.length - 1];
+        this.selectedBot = this.router.url.split('/')[1];
       }
     });
+    this.selectedBot = this.router.url.split('/')[1];
   }
 
   closeMobileMenu(event: Event) {
