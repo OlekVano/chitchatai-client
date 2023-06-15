@@ -19,8 +19,6 @@
 <div class="bot-big-wrapper">
   <app-bot-big *ngIf="currBot" [bot]="currBot"></app-bot-big>
 </div>
-<div class="mobile-navigation-wrapper" [class.shown]="mobileNavigationShown">
-  <div class="mobile-navigation">
-    <app-navigation (closeMobileMenuEvent)="toggleMobileMenu()"></app-navigation>
-  </div>
+<div class="mobile-navigation" [class.shown]="mobileNavigationShown">
+  <app-navigation (closeMobileMenuEvent)="toggleMobileMenu()"></app-navigation>
 </div>

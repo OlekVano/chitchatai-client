@@ -96,35 +96,18 @@
   display: none;
 }
 
-.mobile-navigation-wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  transition: background-color 350ms;
-}
-
-.mobile-navigation-wrapper:not(.shown) {
-  transition-delay: 0;
-}
-
-.mobile-navigation-wrapper.shown {
-  background-color: rgba(0,0,0,0.3);
-  z-index: 10;
-  transition-delay: 2s;
-  transition: background-color 0s;
-}
-
 .mobile-navigation {
+  position: absolute;
   height: 100%;
   width: 100%;
   max-width: 300px;
   transform: translateX(-100%);
   background-color: @background-primary;
   transition: transform 350ms;
+  z-index: 10;
 }
 
-.mobile-navigation-wrapper.shown > .mobile-navigation {
+.mobile-navigation.shown {
   transform: translateX(0);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
