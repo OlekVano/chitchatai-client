@@ -78,8 +78,7 @@ export class LayoutComponent implements OnInit {
   }
 
   getBotAnswer(bots: Bot[], botIndex: number) {
-    // const url = 'https://chitchat-ai.herokuapp.com';
-    const url = 'http://localhost:3001';
+    const url = 'https://chitchatai-server.herokuapp.com';
     this.http.post<any>(url, {identity: bots[botIndex].description, messages: bots[botIndex].messages.slice(-5)}).subscribe(
       (response: Message) => {
         this.store.dispatch(addMessage({ message: response, botIndex: botIndex }));
