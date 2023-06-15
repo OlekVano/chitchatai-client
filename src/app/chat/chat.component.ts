@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    if (this.messageInput.nativeElement.value.length === 0) return;
+    if (this.messageInput.nativeElement.value.length === 0 || this.waiting) return;
 
     const userMessage: Message = {
       bot: false,

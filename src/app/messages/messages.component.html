@@ -1,1 +1,4 @@
 <app-message *ngFor="let message of bot.messages" [text]="message.content" [right]="!message.bot" [avatar]="message.bot ? bot.avatar : '/assets/images/hacker.png'"></app-message>
+<div class="dots-wrapper" *ngIf="waiting">
+  <app-loading-dots></app-loading-dots>
+</div>

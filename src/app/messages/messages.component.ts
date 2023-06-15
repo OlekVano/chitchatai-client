@@ -8,6 +8,7 @@ import { Bot } from '../state/bots.model';
 })
 export class MessagesComponent implements AfterViewChecked {
   @Input() bot!: Bot;
+  @Input() waiting!: boolean;
 
   constructor(
     private renderer: Renderer2,

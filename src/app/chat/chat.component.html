@@ -5,15 +5,12 @@
     </div>
     <app-bot-small *ngIf="currBot" [bot]="currBot"></app-bot-small>
   </div>
-  <app-messages ngClass="messages" *ngIf="this.currBot" [bot]="this.currBot"></app-messages>
-  <div *ngIf="!waiting" class="input-container">
+  <app-messages ngClass="messages" [waiting]="waiting" *ngIf="this.currBot" [bot]="this.currBot"></app-messages>
+  <div class="input-container">
     <input (keydown.enter)="handleEnterKey()" type="text" placeholder="Type message..." #messageInput />
-    <div class="image-wrapper" (click)="sendMessage()" >
+    <div class="image-wrapper" (click)="sendMessage()" [class.transparent]="waiting">
       <img src="/assets/images/paper.png" />
     </div>
-  </div>
-  <div *ngIf="waiting" class="waiting-container">
-    <app-loading-dots></app-loading-dots>
   </div>
 </div>
 <div class="bot-big-wrapper">
