@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatComponent } from './chat/chat.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: ':botIndex',
-    component: ChatComponent
+    component: LayoutComponent
   }
 ];
 

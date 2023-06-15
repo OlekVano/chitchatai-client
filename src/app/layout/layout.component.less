@@ -1,9 +1,8 @@
 @import '/src/consts.less';
 
 :host {
-  flex: 1;
   display: flex;
-  min-width: 0;
+  max-width: 100%;
 }
 
 .main {
@@ -84,7 +83,6 @@
   }
 }
 
-.mobile-navigation-wrapper,
 .mobile-navigation,
 .mobile-menu-button
 {
@@ -113,8 +111,13 @@
   opacity: 0;
 }
 
+@media screen and (min-width: 601px) {
+  .mobile-navigation.shown {
+    transform: translateX(-100%);
+  }
+}
+
 @media screen and (max-width: 600px) {
-  .mobile-navigation-wrapper,
   .mobile-navigation,
   .mobile-menu-button
   {

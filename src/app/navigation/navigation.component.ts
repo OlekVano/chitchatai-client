@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Bot } from '../state/bots.model';
@@ -14,6 +14,7 @@ export class NavigationComponent {
   bots$: Observable<Bot[]>;
   selectedBot: string = '';
 
+  @Input() @HostBinding('class.shown') mobileShown!: boolean;
   @Output() closeMobileMenuEvent: EventEmitter<Event> = new EventEmitter();
 
   constructor(private store: Store<AppState>, private router: Router) {
@@ -23,7 +24,8 @@ export class NavigationComponent {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.selectedBot = this.router.url.split('/')[1];
+        const urlSegments = this.router.url.split('/');
+        this.selectedBot = urlSegments[urlSegments.length - 1];
       }
     });
   }

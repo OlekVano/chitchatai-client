@@ -8,11 +8,11 @@ import { AppState } from '../state/state.model';
 import { addMessage } from '../state/bots.actions';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.less']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.less']
 })
-export class ChatComponent implements OnInit {
+export class LayoutComponent implements OnInit {
   bots$: Observable<Bot[]>;
   bots: Bot[] = [];
   currBot?: Bot;
