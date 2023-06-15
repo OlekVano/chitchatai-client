@@ -1,5 +1,5 @@
 export interface Bot {
-  status: string,
+  summary: string,
   name: string,
   description: string,
   avatar: string,
