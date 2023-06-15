@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
   bots: Bot[] = [];
   currBot?: Bot;
   waiting: boolean = false;
+  mobileNavigationShown = false;
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
 
   constructor (private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private cdr: ChangeDetectorRef, private http: HttpClient) {
@@ -25,6 +26,11 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.handleUrlChanges();
+  }
+
+  toggleMobileMenu() {
+    console.log('toggle');
+    this.mobileNavigationShown = !this.mobileNavigationShown;
   }
 
   handleEnterKey() {

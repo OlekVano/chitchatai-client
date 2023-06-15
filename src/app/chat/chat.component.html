@@ -1,5 +1,8 @@
 <div class="main">
   <div class="top">
+    <div (click)="toggleMobileMenu()" class="mobile-menu-button">
+      <img src="/assets/images/menu.png" />
+    </div>
     <app-bot-small *ngIf="currBot" [bot]="currBot"></app-bot-small>
   </div>
   <app-messages ngClass="messages" *ngIf="this.currBot" [bot]="this.currBot"></app-messages>
@@ -15,4 +18,9 @@
 </div>
 <div class="bot-big-wrapper">
   <app-bot-big *ngIf="currBot" [bot]="currBot"></app-bot-big>
+</div>
+<div class="mobile-navigation-wrapper" [class.shown]="mobileNavigationShown">
+  <div class="mobile-navigation">
+    <app-navigation (closeMobileMenuEvent)="toggleMobileMenu()"></app-navigation>
+  </div>
 </div>

@@ -1,7 +1,6 @@
 @import '/src/consts.less';
 
 :host {
-  width: 300px;
   background-color: @background-secondary;
 }
 
@@ -28,6 +27,46 @@
   margin-top: @padding-2xl;
 }
 
+.links > a {
+  color: inherit;
+  text-decoration: inherit;
+  padding: @padding-xs;
+  border-radius: @padding-xs;
+}
+
+.links > a.selected {
+  background-color: @color-primary;
+}
+
 h1 {
   .text-xl();
+}
+
+.close-mobile-menu {
+  cursor: pointer;
+}
+
+.close-mobile-menu > img {
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.close-mobile-menu,
+.mobile-menu-button
+{
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .close-mobile-menu,
+  .mobile-menu-button
+  {
+    display: block;
+  }
+
+  .number-bots {
+    display: none;
+  }
 }

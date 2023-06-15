@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Bot } from '../state/bots.model';
 import { NavigationEnd, Router } from '@angular/router';
@@ -14,16 +14,21 @@ export class NavigationComponent {
   bots$: Observable<Bot[]>;
   selectedBot: string = '';
 
-  constructor(private store: Store<AppState>, private router: Router, private cdr: ChangeDetectorRef) {
+  @Output() closeMobileMenuEvent: EventEmitter<Event> = new EventEmitter();
+
+  constructor(private store: Store<AppState>, private router: Router) {
     this.bots$ = store.select(state => state.bots);
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.selectedBot = event.url.substring(1);
-        this.cdr.detectChanges();
+        this.selectedBot = this.router.url.split('/')[1];
       }
-    })
+    });
+  }
+
+  closeMobileMenu(event: Event) {
+    this.closeMobileMenuEvent.emit(event);
   }
 }

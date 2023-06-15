@@ -1,7 +1,12 @@
 <div class="top">
   <h1>BOTS</h1>
   <p class="number-bots">4</p>
+  <div class="close-mobile-menu" (click)="closeMobileMenu($event)">
+    <img src="/assets/images/close.png" />
+  </div>
 </div>
 <div class="links">
-  <app-bot-small *ngFor="let bot of bots$ | async" [bot]="bot" [selected]="bot.name.toLowerCase() === selectedBot"></app-bot-small>
+  <a *ngFor="let bot of bots$ | async" [class.selected]="bot.name.toLowerCase() === selectedBot" [routerLink]="bot.name.toLowerCase()">
+    <app-bot-small [bot]="bot"></app-bot-small>
+  </a>
 </div>
