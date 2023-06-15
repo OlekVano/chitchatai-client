@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="links">
-  <a *ngFor="let bot of bots$ | async" [class.selected]="bot.name.toLowerCase() === selectedBot" [routerLink]="bot.name.toLowerCase()">
+  <a *ngFor="let bot of bots$ | async" [class.selected]="bot.name.toLowerCase() === selectedBot" [routerLink]="'/' + bot.name.toLowerCase()">
     <app-bot-small [bot]="bot"></app-bot-small>
   </a>
 </div>
