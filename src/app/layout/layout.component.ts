@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Bot, Message } from '../state/bots.model';
 import { AppState } from '../state/state.model';
 import { addMessage } from '../state/bots.actions';
@@ -18,6 +18,8 @@ export class LayoutComponent implements OnInit {
   currBot?: Bot;
   waiting: boolean = false;
   mobileNavigationShown = false;
+  botsSubscription?: Subscription;
+  urlSubscription?: Subscription;
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
 
   constructor (private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private cdr: ChangeDetectorRef, private http: HttpClient) {
@@ -25,11 +27,14 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.handleUrlChanges();
+    this.urlSubscription = this.handleUrlChanges();
+  }
+
+  ngOnDestroy() {
+    this.urlSubscription?.unsubscribe();
   }
 
   toggleMobileMenu() {
-    console.log('toggle');
     this.mobileNavigationShown = !this.mobileNavigationShown;
   }
 
@@ -51,15 +56,16 @@ export class LayoutComponent implements OnInit {
   }
 
   handleUrlChanges() {
-    this.route.url.subscribe((segments) => {
+    return this.route.url.subscribe((segments) => {
       const url = segments.map(segment => segment.path).join('/');
+      this.botsSubscription?.unsubscribe();
       this.handleBotsChanges(url);
       this.cdr.detectChanges();
     });
   }
 
   handleBotsChanges(url: string) {
-    this.bots$.subscribe((bots: Bot[]) => {
+    this.botsSubscription = this.bots$.subscribe((bots: Bot[]) => {
       this.bots = bots;
       this.saveToLocal(bots);
       this.currBot = bots.find(bot => bot.name.toLowerCase() === url);
