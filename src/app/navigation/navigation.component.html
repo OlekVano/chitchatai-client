@@ -6,8 +6,8 @@
   </div>
 </div>
 <div class="links">
+  <app-create-bot-button (openCreateBotModalEvent)="openCreateBotModalEvent.emit()"></app-create-bot-button>
   <a *ngFor="let bot of bots$ | async" [class.selected]="bot.id === selectedBot" [routerLink]="'/' + bot.id">
     <app-bot-small [bot]="bot"></app-bot-small>
   </a>
-  <app-create-bot-button (openCreateBotModalEvent)="openCreateBotModalEvent.emit()"></app-create-bot-button>
 </div>
