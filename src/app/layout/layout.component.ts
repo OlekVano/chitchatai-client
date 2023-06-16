@@ -68,7 +68,7 @@ export class LayoutComponent implements OnInit {
     this.botsSubscription = this.bots$.subscribe((bots: Bot[]) => {
       this.bots = bots;
       this.saveToLocal(bots);
-      this.currBot = bots.find(bot => bot.name.toLowerCase() === url);
+      this.currBot = bots.find(bot => bot.id === url);
       if (!this.currBot) this.router.navigate(['sarah']);
       else if (
         this.currBot.messages.length > 0 && 

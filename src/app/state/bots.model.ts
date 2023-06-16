@@ -1,4 +1,5 @@
 export interface Bot {
+  id: string,
   summary: string,
   name: string,
   description: string,
