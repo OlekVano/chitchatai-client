@@ -3,6 +3,7 @@ import { addBot } from '../state/bots.actions';
 import { v4 as uuidv4 } from 'uuid';
 import { AppState } from '../state/state.model';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-bot-modal',
@@ -16,12 +17,13 @@ export class CreateBotModalComponent {
 
   @Output() closeModalEvent: EventEmitter<null> = new EventEmitter();
 
-  constructor (private store: Store<AppState>) {}
+  constructor (private store: Store<AppState>, private router: Router) {}
 
   createBot() {
     const name = this.nameInput.nativeElement.value.trim();
     const summary = this.summaryInput.nativeElement.value.trim();
     const description = this.descriptionInput.nativeElement.value.trim();
+    const id = uuidv4()
 
     if (name.length === 0 || summary.length === 0 || description.length === 0) {
       alert('You must fill in all the fields.');
@@ -29,7 +31,7 @@ export class CreateBotModalComponent {
     }
 
     this.store.dispatch(addBot({ bot: {
-      id: uuidv4(),
+      id: id,
       avatar: '/assets/images/robot.png',
       description: `My name is ${name}. ${summary} ${description}`,
       messages: [],
@@ -38,5 +40,6 @@ export class CreateBotModalComponent {
     }}));
 
     this.closeModalEvent.emit();
+    this.router.navigate([id]);
   }
 }
