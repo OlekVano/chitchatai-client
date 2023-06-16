@@ -16,6 +16,7 @@ export class NavigationComponent {
 
   @Input() @HostBinding('class.shown') mobileShown!: boolean;
   @Output() closeMobileMenuEvent: EventEmitter<Event> = new EventEmitter();
+  @Output() openCreateBotModalEvent: EventEmitter<null> = new EventEmitter();
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.bots$ = store.select(state => state.bots);

@@ -17,7 +17,8 @@ export class LayoutComponent implements OnInit {
   bots: Bot[] = [];
   currBot?: Bot;
   waiting: boolean = false;
-  mobileNavigationShown = false;
+  mobileNavigationShown: boolean = false;
+  createBotModalShown: boolean = false;
   botsSubscription?: Subscription;
   urlSubscription?: Subscription;
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
@@ -36,6 +37,10 @@ export class LayoutComponent implements OnInit {
 
   toggleMobileMenu() {
     this.mobileNavigationShown = !this.mobileNavigationShown;
+  }
+
+  toggleCreateBotModal() {
+    this.createBotModalShown = !this.createBotModalShown;
   }
 
   handleEnterKey() {

@@ -1,4 +1,4 @@
-<app-navigation (closeMobileMenuEvent)="toggleMobileMenu()" [mobileShown]="mobileNavigationShown"></app-navigation>
+<app-navigation (openCreateBotModalEvent)="toggleCreateBotModal()" (closeMobileMenuEvent)="toggleMobileMenu()" [mobileShown]="mobileNavigationShown"></app-navigation>
 <div class="main">
   <div class="top">
     <div (click)="toggleMobileMenu()" class="mobile-menu-button">
@@ -17,3 +17,4 @@
 <div class="bot-big-wrapper">
   <app-bot-big *ngIf="currBot" [bot]="currBot"></app-bot-big>
 </div>
+<app-create-bot-modal *ngIf="createBotModalShown" (closeModalEvent)="toggleCreateBotModal()"></app-create-bot-modal>

@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="container">
+    <button class="close-button" (click)="closeModalEvent.emit()">
+      <img src="/assets/images/close.png" />
+    </button>
+    <div>
+      <label for="name">Name</label>
+      <input id="name" placeholder="Elon Musk" #nameInput/>
+    </div>
+    <div>
+      <label for="summary">Short Description</label>
+      <input id="summary" placeholder="Richest Man" #summaryInput/>
+    </div>
+    <div>
+      <label for="description">Full Description</label>
+      <textarea id="description" placeholder="Loves cars" #fullDescriptionInput></textarea>
+    </div>
+    <button class="create" (click)="createBot()">Create</button>
+  </div>
+</div>

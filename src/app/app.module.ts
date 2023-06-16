@@ -12,6 +12,8 @@ import { botsReducer } from './state/bots.reducer';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageComponent } from './message/message.component';
 import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
+import { CreateBotModalComponent } from './create-bot-modal/create-bot-modal.component';
+import { CreateBotButtonComponent } from './create-bot-button/create-bot-button.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
     MessagesComponent,
     MessageComponent,
     LoadingDotsComponent,
+    CreateBotModalComponent,
+    CreateBotButtonComponent,
   ],
   imports: [
     BrowserModule,
