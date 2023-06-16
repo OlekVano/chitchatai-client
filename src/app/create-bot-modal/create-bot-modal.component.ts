@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 })
 export class CreateBotModalComponent {
   @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('fullDescriptionInput') fullDescriptionInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('descriptionInput') descriptionInput!: ElementRef<HTMLInputElement>;
   @ViewChild('summaryInput') summaryInput!: ElementRef<HTMLTextAreaElement>;
 
   @Output() closeModalEvent: EventEmitter<null> = new EventEmitter();
@@ -19,14 +19,24 @@ export class CreateBotModalComponent {
   constructor (private store: Store<AppState>) {}
 
   createBot() {
+    const name = this.nameInput.nativeElement.value.trim();
+    const summary = this.summaryInput.nativeElement.value.trim();
+    const description = this.descriptionInput.nativeElement.value.trim();
+
+    if (name.length === 0 || summary.length === 0 || description.length === 0) {
+      alert('You must fill in all the fields.');
+      return;
+    }
+
     this.store.dispatch(addBot({ bot: {
       id: uuidv4(),
       avatar: '/assets/images/robot.png',
-      description: `My name is ${this.nameInput.nativeElement.value}. ${this.summaryInput.nativeElement.value} ${this.fullDescriptionInput.nativeElement.value}`,
+      description: `My name is ${name}. ${summary} ${description}`,
       messages: [],
-      name: this.nameInput.nativeElement.value,
-      summary: this.summaryInput.nativeElement.value
+      name: name,
+      summary: summary
     }}));
+
     this.closeModalEvent.emit();
   }
 }
